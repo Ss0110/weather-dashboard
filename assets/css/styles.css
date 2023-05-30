@@ -1,0 +1,70 @@
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  color: #333333;
+}
+
+.container-fluid {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f8f8f8;
+  border-bottom: none;
+  padding: 10px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.text-muted {
+  color: #999999;
+}
+
+#currentWeatherInfo,
+#forecastWeatherInfo {
+  margin-top: 20px;
+}
+
+#currentCityName,
+#forecastCityName {
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#searchForm,
+#searchHistory {
+  margin-bottom: 20px;
+}
+
+.search-item {
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background-color: #ebebeb;
+}
+
+.weather-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 5px;
+}
