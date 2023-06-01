@@ -35,6 +35,8 @@ function showCurrentWeatherData(city, data) {
   const humidity = currentWeatherData.main.humidity;
   const windSpeed = currentWeatherData.wind.speed;
   const description = currentWeatherData.weather[0].description;
+  const weatherCode = currentWeatherData.weather[0].id;
+  const iconClass = getIconClass(weatherCode);
 
   const currentWeatherContainer = document.getElementById("currentWeather");
   currentWeatherContainer.innerHTML = "";
@@ -45,7 +47,8 @@ function showCurrentWeatherData(city, data) {
     temperature,
     humidity,
     windSpeed,
-    description
+    description,
+    iconClass
   );
   currentWeatherContainer.appendChild(currentWeatherItem);
 
@@ -66,12 +69,15 @@ function showForecastWeatherData(data) {
     const humidity = item.main.humidity;
     const windSpeed = item.wind.speed;
     const description = item.weather[0].description;
+    const weatherCode = item.weather[0].id;
+    const iconClass = getIconClass(weatherCode);
 
     const forecastItem = createWeatherItem(
       temperature,
       humidity,
       windSpeed,
       description,
+      iconClass,
       date
     );
     forecastContainer.appendChild(forecastItem);
@@ -85,6 +91,7 @@ function createWeatherItem(
   humidity,
   windSpeed,
   description,
+  iconClass,
   date
 ) {
   const weatherItem = document.createElement("div");
@@ -104,6 +111,9 @@ function createWeatherItem(
   const cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
 
+  const icon = document.createElement("i");
+  icon.classList.add("wi", iconClass);
+
   const temperatureEl = document.createElement("p");
   temperatureEl.classList.add("card-text");
   temperatureEl.textContent = `Temperature: ${temperature}°C`;
@@ -120,6 +130,7 @@ function createWeatherItem(
   descriptionEl.classList.add("card-text");
   descriptionEl.textContent = `Description: ${description}`;
 
+  cardBody.appendChild(icon);
   cardBody.appendChild(temperatureEl);
   cardBody.appendChild(humidityEl);
   cardBody.appendChild(windSpeedEl);
@@ -136,6 +147,35 @@ function createWeatherItem(
 function formatDate(date) {
   const options = { weekday: "long", month: "long", day: "numeric" };
   return date.toLocaleDateString("en-US", options);
+}
+
+function getIconClass(weatherCode) {
+  // Map weather codes to appropriate weather icons
+  // Add more mappings as needed
+  const weatherIcons = {
+    "01d": "wi-day-sunny",
+    "01n": "wi-night-clear",
+    "02d": "wi-day-cloudy",
+    "02n": "wi-night-cloudy",
+    "03d": "wi-cloud",
+    "03n": "wi-cloud",
+    "04d": "wi-cloudy",
+    "04n": "wi-cloudy",
+    "09d": "wi-showers",
+    "09n": "wi-showers",
+    "10d": "wi-day-rain",
+    "10n": "wi-night-rain",
+    "11d": "wi-thunderstorm",
+    "11n": "wi-thunderstorm",
+    "13d": "wi-snow",
+    "13n": "wi-snow",
+    "50d": "wi-fog",
+    "50n": "wi-fog",
+  };
+
+  const iconClass = weatherIcons[weatherCode];
+
+  return iconClass ? iconClass : "wi-day-sunny";
 }
 
 function saveSearchHistory(city) {
