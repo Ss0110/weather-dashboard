@@ -8,7 +8,7 @@ document
   });
 
 function getWeatherData(city) {
-  const apiKey = "7d4e1fd01b57a8ec610b60672eae513a"; // Replace with your own OpenWeatherMap API key
+  const apiKey = "7d4e1fd01b57a8ec610b60672eae513a";
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
   fetch(apiUrl)
@@ -56,7 +56,7 @@ function showCurrentWeatherData(city, data) {
 }
 
 function showForecastWeatherData(data) {
-  const forecastData = data.list.filter((item, index) => index % 8 === 0); // Filter data for 5-day forecast
+  const forecastData = data.list.filter((item, index) => index % 8 === 0);
   const forecastContainer = document.getElementById("forecast");
   forecastContainer.innerHTML = "";
 
@@ -150,8 +150,6 @@ function formatDate(date) {
 }
 
 function getIconClass(weatherCode) {
-  // Map weather codes to appropriate weather icons
-  // Add more mappings as needed
   const weatherIcons = {
     "01d": "wi-day-sunny",
     "01n": "wi-night-clear",
@@ -208,7 +206,6 @@ function updateSearchHistoryUI(searchHistory) {
   });
 }
 
-// Load search history on page load
 window.addEventListener("DOMContentLoaded", () => {
   const searchHistory = getSearchHistory();
   updateSearchHistoryUI(searchHistory);
